@@ -7,7 +7,9 @@
   <% if enhanced_cart.count == 0 %>
   <div class="alert alert-danger">
     <strong>Your card is empty. Add something to it first.</strong>
-        <li><%= link_to "Home Page", root_path %></li>
+    <ul class="unstyled">
+        <br><%= link_to "Home Page", root_path, class: 'btn btn-lg btn-primary'%></br>
+    </ul>    
   </div>
 <% else %>
     <div class="panel panel-default items">
