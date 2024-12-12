@@ -21,6 +21,26 @@ class ApplicationController < ActionController::Base
   end
   helper_method :cart_subtotal_cents
 
+  def line_items(order_id)
+    @line_items = LineItem.where("order_id = ?", order_id)
+  end  
+  helper_method :line_items
+
+  def product_name(product_id)
+    @product = Product.where("id = ?", product_id).pick(:name)
+  end
+  helper_method :product_name
+
+  def order_email(order_id)
+    @order_email = Order.where("id = ?", order_id).pick(:email)
+  end
+  helper_method :order_email
+
+  def total_line_items(order_id)
+    @total_line_items = LineItem.where("order_id = ?", order_id).sum(:total_price_cents)
+  end  
+  helper_method :total_line_items
+
 
   def update_cart(new_cart)
     cookies[:cart] = {
