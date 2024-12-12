@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get 'about', to: 'about#index'
-  get 'products', to: 'admin/products#index'
+  get '/admin/products', to: 'admin/products#index'
   
   root to: 'products#index'
 
