@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'about', to: 'about#index'
+  get 'products', to: 'admin/products#index'
+  
   root to: 'products#index'
 
   resources :products, only: [:index, :show]
@@ -67,8 +70,8 @@ Rails.application.routes.draw do
 
   # Example resource route within a namespace:
   #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
+       # Directs /admin/products/* to Admin::ProductsController
+       # (app/controllers/admin/products_controller.rb)
+  #    resources :products
   #   end
 end
