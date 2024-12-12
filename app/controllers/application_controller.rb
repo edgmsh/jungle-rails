@@ -31,6 +31,16 @@ class ApplicationController < ActionController::Base
   end
   helper_method :product_name
 
+  def products_now
+    @products_now = Product.count
+  end
+  helper_method :products_now
+
+  def categories_now
+    @categories_now = Category.count
+  end
+  helper_method :categories_now
+
   def order_email(order_id)
     @order_email = Order.where("id = ?", order_id).pick(:email)
   end
