@@ -44,6 +44,7 @@ gem 'rmagick'
 gem 'faker'
 gem 'carrierwave'
 
+gem 'dotenv-rails', groups: [:development, :test]
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
