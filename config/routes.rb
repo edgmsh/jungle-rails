@@ -6,6 +6,17 @@ Rails.application.routes.draw do
   
   root to: 'products#index'
 
+  # For User-Auth feature
+  #root "home#index" # Replace 'home#index' with your desired root page
+
+  get "/register", to: "users#new", as: "register"
+  post "/register", to: "users#create"
+
+  get "/login", to: "sessions#new", as: "login"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy", as: "logout"
+  #####
+
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
 
