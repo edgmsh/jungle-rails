@@ -40,3 +40,4 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 - PostgreSQL 9.x
 - Stripe
 - Rspec 5
+- Cypress 12
