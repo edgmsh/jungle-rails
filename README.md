@@ -2,6 +2,16 @@
 
 A mini e-commerce application built with Rails 6.1 for purposes of teaching Rails by example.
 
+# Screenshots
+
+![Main Page](Docs/Jungle_main.jpg)
+
+![Register Page](Docs/Jungle_register.jpg)
+
+![Order Page](Docs/Jungle_order.jpg)
+
+![Product Sold Out](Docs/Jungle_sold.jpg)
+
 ## Setup
 
 1. Run `bundle install` to install dependencies
@@ -29,3 +39,4 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 - Bootstrap 5
 - PostgreSQL 9.x
 - Stripe
+- Rspec 5
