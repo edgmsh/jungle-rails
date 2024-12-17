@@ -6,13 +6,11 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :password, presence: true, length: { minimum: 6 }
 
-  # Ensure email is stored in lowercase
-  before_save :downcase_email
-
-  private
-
-  def downcase_email
-    self.email = email.downcase if email.present?
+  def self.authenticate_with_credentials(email, password)
+    email = email.strip.downcase
+    
+    user = User.find_by('LOWER(email) = ?', email)
+    user && user.authenticate(password) ? user : nil
   end
-  
+
 end

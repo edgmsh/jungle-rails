@@ -125,4 +125,56 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '.authenticate_with_credentials' do
+    let!(:user) { User.create(
+      first_name: 'John',
+      last_name: 'Doe',
+      email: 'test@example.com',
+      password: 'password',
+      password_confirmation: 'password'
+    ) }
+
+    context 'when email and password are correct' do
+      it 'authenticates the user' do
+        authenticated_user = User.authenticate_with_credentials('test@example.com', 'password')
+        expect(authenticated_user).to eq(user)
+      end
+    end
+
+    context 'when password is incorrect' do
+      it 'does not authenticate the user' do
+        authenticated_user = User.authenticate_with_credentials('test@example.com', 'wrongpassword')
+        expect(authenticated_user).to be_nil
+      end
+    end
+
+    context 'when email is incorrect' do
+      it 'does not authenticate the user' do
+        authenticated_user = User.authenticate_with_credentials('nonexistent@example.com', 'password')
+        expect(authenticated_user).to be_nil
+      end
+    end
+
+    context 'when email has different casing' do
+      it 'authenticates the user regardless of casing' do
+        authenticated_user = User.authenticate_with_credentials('TEST@EXAMPLE.COM', 'password')
+        expect(authenticated_user).to eq(user)
+      end
+    end
+
+    context 'when email has leading/trailing spaces' do
+      it 'authenticates the user after stripping spaces' do
+        authenticated_user = User.authenticate_with_credentials('  test@example.com  ', 'password')
+        expect(authenticated_user).to eq(user)
+      end
+    end
+
+    context 'when email format is invalid' do
+      it 'does not authenticate the user with an invalid email format' do
+        invalid_user = User.authenticate_with_credentials('invalid-email', 'password')
+        expect(invalid_user).to be_nil
+      end
+    end
+  end
 end
